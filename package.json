@@ -1,9 +1,12 @@
 {
+  "homepage": "https://aryansharma18-eng.github.io/Lost---Found-Website",
   "name": "chitkara-lost-found",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy":" npm run build",
+    "deploy": "gh-pages -d build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
