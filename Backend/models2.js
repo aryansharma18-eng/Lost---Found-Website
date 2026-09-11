@@ -1,56 +1,59 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const ReportSchema = new mongoose.Schema({
-  finderId: {
-    type: String,
-    required: true,
-  },
-  itemName: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  foundLocation:{
-    type: String,
-    required: true,
-  },
-  foundDate:{
-    type: Date,
-    required: true,
-  },
-  contactNumber: {
-    type: String,
-    required: true,
-  },
-  proofImage: {
-    url: {
+const FoundSchema = new mongoose.Schema(
+  {
+    finderId: {
       type: String,
-
+      required: true,
+      trim: true,
     },
-    publicId: {
+
+    itemName: {
       type: String,
-      required: function() {
-        return this.reportType === 'found';
-      }
-    }
+      required: true,
+      trim: true,
+    },
+
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    foundLocation: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    foundDate: {
+      type: Date,
+      required: true,
+    },
+
+    contactNumber: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    proofImage: {
+      url: {
+        type: String,
+        trim: true,
+        default: "",
+      },
+
+      publicId: {
+        type: String,
+        trim: true,
+        default: "",
+      },
+    },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
+  {
+    timestamps: true,
   }
-});
+);
 
-// Update the updatedAt field before saving
-ReportSchema.pre('save', function(next) {
-  this.updatedAt = Date.now();
-  next();
-});
-
-export default mongoose.model('Found', ReportSchema);
+export default mongoose.model("Found", FoundSchema);
